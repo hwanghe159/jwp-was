@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 public class RequestLine {
     private static final String DELIMITER = " ";
     private Method method;
-    private String requestUri;
+    private RequestUri requestUri;
     private String httpVersion;
 
     public RequestLine(BufferedReader br) throws Exception {
@@ -15,14 +15,14 @@ public class RequestLine {
         validate(requestLine);
         String[] tokens = requestLine.split(DELIMITER);
         this.method = Method.valueOf(tokens[0]);
-        this.requestUri = tokens[1];
+        this.requestUri = new RequestUri(tokens[1]);
         this.httpVersion = tokens[2];
     }
 
     public RequestLine(String requestLine) {
         String[] tokens = requestLine.split(DELIMITER);
         this.method = Method.valueOf(tokens[0]);
-        this.requestUri = tokens[1];
+        this.requestUri = new RequestUri(tokens[1]);
         this.httpVersion = tokens[2];
     }
 
@@ -32,11 +32,19 @@ public class RequestLine {
         }
     }
 
+    public boolean isGet() {
+        return method.isGet();
+    }
+
+    public boolean isPost() {
+        return method.isPost();
+    }
+
     public Method getMethod() {
         return method;
     }
 
-    public String getRequestUri() {
+    public RequestUri getRequestUri() {
         return requestUri;
     }
 
