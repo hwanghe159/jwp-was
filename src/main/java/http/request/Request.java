@@ -18,6 +18,14 @@ public class Request {
         this.messageBody = new MessageBody(br, requestHeader.getContentLength());
     }
 
+    public boolean isGet() {
+        return requestLine.isGet();
+    }
+
+    public boolean isPost() {
+        return requestLine.isPost();
+    }
+
     public RequestLine getRequestLine() {
         return requestLine;
     }
@@ -28,9 +36,5 @@ public class Request {
 
     public MessageBody getMessageBody() {
         return messageBody;
-    }
-
-    public boolean isMethod(Method method) {
-        return method == requestLine.getMethod();
     }
 }

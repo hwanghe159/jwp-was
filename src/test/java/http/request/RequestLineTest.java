@@ -12,7 +12,7 @@ public class RequestLineTest {
         RequestLine requestLine = new RequestLine("GET /index.html HTTP/1.1");
 
         assertThat(requestLine.getMethod()).isEqualTo(Method.GET);
-        assertThat(requestLine.getRequestUri()).isEqualTo("/index.html");
+        assertThat(requestLine.getRequestUri().getPath()).isEqualTo("/index.html");
         assertThat(requestLine.getHttpVersion()).isEqualTo("HTTP/1.1");
     }
 }

@@ -13,7 +13,7 @@ public class TemplatesController implements Controller {
 
     @Override
     public void service(Request request, Response response) throws IOException, URISyntaxException {
-        String requestUrl = request.getRequestLine().getRequestUri();
+        String requestUrl = request.getRequestLine().getRequestUri().getPath();
 
         byte[] body = FileIoUtils.loadFileFromClasspath(Directory.TEMPLATES.getDirectory() + requestUrl);
         ContentType contentType = ContentType.of(requestUrl);
