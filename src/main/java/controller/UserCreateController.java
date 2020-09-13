@@ -2,27 +2,26 @@ package controller;
 
 import db.DataBase;
 import http.request.Request;
+import http.response.Response;
 import mapper.QueryParams;
 import model.User;
 
-import java.io.DataOutputStream;
 import java.util.Map;
 
-import static http.ResponseHeader.response302Header;
 import static http.request.Method.GET;
 import static http.request.Method.POST;
 
 public class UserCreateController implements Controller {
     @Override
-    public void service(Request request, DataOutputStream dos) {
+    public void service(Request request, Response response) {
         if (request.isMethod(GET)) {
-            doGet(request, dos);
+            doGet(request, response);
         } else if (request.isMethod(POST)) {
-            doPost(request, dos);
+            doPost(request, response);
         }
     }
 
-    public void doGet(Request request, DataOutputStream dos) {
+    public void doGet(Request request, Response response) {
         String requestUrl = request.getRequestLine().getRequestUri();
         QueryParams queryParams = new QueryParams(requestUrl);
         Map<String, String> queryParamsMap = queryParams.getQueryParams();
@@ -31,16 +30,16 @@ public class UserCreateController implements Controller {
             User user = new User(queryParamsMap.get("userId"), queryParamsMap.get("password"),
                     queryParamsMap.get("name"), queryParamsMap.get("email"));
             DataBase.addUser(user);
-            response302Header(dos, "/index.html");
+            response.response302Header("/index.html");
         }
     }
 
-    public void doPost(Request request, DataOutputStream dos) {
+    public void doPost(Request request, Response response) {
         Map<String, String> requestBodies = request.getMessageBody().getRequestBodies();
         User user = new User(requestBodies.get("userId"), requestBodies.get("password"),
                 requestBodies.get("name"), requestBodies.get("email"));
         DataBase.addUser(user);
 
-        response302Header(dos, "/index.html");
+        response.response302Header("/index.html");
     }
 }
