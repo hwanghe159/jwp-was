@@ -6,19 +6,17 @@ import exception.IllegalRequestException;
 
 public class RequestLine {
     private static final String DELIMITER = " ";
-    private RequestMethod method;
-
-    private String url;
-
-    private String protocol;
+    private Method method;
+    private String requestUri;
+    private String httpVersion;
 
     public RequestLine(BufferedReader br) throws Exception {
         String requestLine = br.readLine();
         validate(requestLine);
         String[] tokens = requestLine.split(DELIMITER);
-        this.method = RequestMethod.valueOf(tokens[0]);
-        this.url = tokens[1];
-        this.protocol = tokens[2];
+        this.method = Method.valueOf(tokens[0]);
+        this.requestUri = tokens[1];
+        this.httpVersion = tokens[2];
     }
 
     private void validate(String requestLine) throws IllegalRequestException {
@@ -27,15 +25,15 @@ public class RequestLine {
         }
     }
 
-    public RequestMethod getMethod() {
+    public Method getMethod() {
         return method;
     }
 
-    public String getUrl() {
-        return url;
+    public String getRequestUri() {
+        return requestUri;
     }
 
-    public String getProtocol() {
-        return protocol;
+    public String getHttpVersion() {
+        return httpVersion;
     }
 }

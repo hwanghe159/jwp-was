@@ -7,13 +7,13 @@ import java.util.Map;
 
 import utils.IOUtils;
 
-public class RequestBody {
+public class MessageBody {
     private static final String URL_DELIMITER = "&";
     private static final String BODY_DELIMITER = "=";
 
     private Map<String, String> requestBodies = new HashMap<>();
 
-    public RequestBody(BufferedReader br, Integer contentLength) throws IOException {
+    public MessageBody(BufferedReader br, Integer contentLength) throws IOException {
         String line = IOUtils.readData(br, contentLength);
         if (!"".equals(line)) {
             String[] tokens = line.split(URL_DELIMITER);

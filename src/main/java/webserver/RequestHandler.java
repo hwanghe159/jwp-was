@@ -32,7 +32,7 @@ public class RequestHandler implements Runnable {
             Request request = new Request(br);
             DataOutputStream dos = new DataOutputStream(out);
 
-            Controller controller = RequestMapping.getController(request.getRequestLine().getUrl());
+            Controller controller = RequestMapping.getController(request.getRequestLine().getRequestUri());
             controller.service(request, dos);
         } catch (Exception e) {
             logger.error(e.getMessage());

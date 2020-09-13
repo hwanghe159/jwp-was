@@ -15,7 +15,7 @@ import utils.FileIoUtils;
 public class StaticController implements Controller {
     @Override
     public void service(Request request, DataOutputStream dos) throws IOException, URISyntaxException {
-        String requestUrl = request.getRequestLine().getUrl();
+        String requestUrl = request.getRequestLine().getRequestUri();
 
         byte[] body = FileIoUtils.loadFileFromClasspath(Directory.STATIC.getDirectory() + requestUrl);
         ContentType contentType = ContentType.of(requestUrl);

@@ -1,5 +1,5 @@
 package http;
 
-public enum RequestMethod {
+public enum Method {
     GET, POST
 }

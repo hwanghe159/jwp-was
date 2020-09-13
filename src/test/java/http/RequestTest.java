@@ -28,9 +28,9 @@ class RequestTest {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         Request expected = new Request(br);
 
-        assertThat(expected.getRequestLine().getUrl()).isEqualTo("/user/create");
+        assertThat(expected.getRequestLine().getRequestUri()).isEqualTo("/user/create");
         assertThat(expected.getRequestHeader().getRequestHeaders()).hasSize(5);
-        assertThat(expected.getRequestBody().getRequestBodies()).hasSize(4);
+        assertThat(expected.getMessageBody().getRequestBodies()).hasSize(4);
     }
 
     @DisplayName("get Request 생성 테스트")
@@ -46,10 +46,10 @@ class RequestTest {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         Request expected = new Request(br);
 
-        assertThat(expected.getRequestLine().getUrl()).isEqualTo(
+        assertThat(expected.getRequestLine().getRequestUri()).isEqualTo(
                 "/user/create?userId=javajigi&password=password&name=%EB%B0%95%EC%9E%AC%EC%84%B1&email=javajigi%40slipp.net");
-        assertThat(expected.getRequestLine().getMethod()).isEqualTo(RequestMethod.GET);
+        assertThat(expected.getRequestLine().getMethod()).isEqualTo(Method.GET);
         assertThat(expected.getRequestHeader().getRequestHeaders()).hasSize(3);
-        assertThat(expected.getRequestBody().getRequestBodies()).hasSize(0);
+        assertThat(expected.getMessageBody().getRequestBodies()).hasSize(0);
     }
 }

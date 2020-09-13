@@ -1,6 +1,6 @@
 package controller;
 
-import static http.RequestMethod.*;
+import static http.Method.*;
 import static http.ResponseHeader.*;
 
 import java.io.DataOutputStream;
@@ -22,7 +22,7 @@ public class UserCreateController implements Controller {
     }
 
     public void doGet(Request request, DataOutputStream dos) {
-        String requestUrl = request.getRequestLine().getUrl();
+        String requestUrl = request.getRequestLine().getRequestUri();
         QueryParams queryParams = new QueryParams(requestUrl);
         Map<String, String> queryParamsMap = queryParams.getQueryParams();
 
@@ -35,7 +35,7 @@ public class UserCreateController implements Controller {
     }
 
     public void doPost(Request request, DataOutputStream dos) {
-        Map<String, String> requestBodies = request.getRequestBody().getRequestBodies();
+        Map<String, String> requestBodies = request.getMessageBody().getRequestBodies();
         User user = new User(requestBodies.get("userId"), requestBodies.get("password"),
                 requestBodies.get("name"), requestBodies.get("email"));
         DataBase.addUser(user);
