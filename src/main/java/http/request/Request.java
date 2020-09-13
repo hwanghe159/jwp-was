@@ -1,4 +1,6 @@
-package http;
+package http.request;
+
+import http.MessageBody;
 
 import java.io.BufferedReader;
 

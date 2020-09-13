@@ -1,15 +1,16 @@
 package controller;
 
-import static http.Method.*;
-import static http.ResponseHeader.*;
+import db.DataBase;
+import http.request.Request;
+import mapper.QueryParams;
+import model.User;
 
 import java.io.DataOutputStream;
 import java.util.Map;
 
-import db.DataBase;
-import http.Request;
-import mapper.QueryParams;
-import model.User;
+import static http.ResponseHeader.response302Header;
+import static http.request.Method.GET;
+import static http.request.Method.POST;
 
 public class UserCreateController implements Controller {
     @Override

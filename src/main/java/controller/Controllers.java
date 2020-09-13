@@ -1,15 +1,11 @@
-package webserver;
+package controller;
+
+import http.ContentType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import controller.Controller;
-import controller.StaticController;
-import controller.TemplatesController;
-import controller.UserCreateController;
-import http.ContentType;
-
-public class RequestMapping {
+public class Controllers {
     private final static TemplatesController templatesController = new TemplatesController();
     private final static StaticController staticController = new StaticController();
     private final static Map<String, Controller> controllers = new HashMap<>();
