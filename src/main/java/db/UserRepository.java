@@ -1,16 +1,15 @@
 package db;
 
+import com.google.common.collect.Maps;
+import model.User;
+
 import java.util.Collection;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
-
-import model.User;
-
-public class DataBase {
+public class UserRepository {
     private static Map<String, User> users = Maps.newHashMap();
 
-    public static void addUser(User user) {
+    public static void save(User user) {
         users.put(user.getUserId(), user);
     }
 

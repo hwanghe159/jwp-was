@@ -1,11 +1,12 @@
 package http;
 
+import model.User;
+import utils.IOUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import utils.IOUtils;
 
 public class MessageBody {
     private static final String URL_DELIMITER = "&";
@@ -28,6 +29,11 @@ public class MessageBody {
             result.put(value[0], value[1]);
         }
         return result;
+    }
+
+    public User getUser() {
+        return new User(requestBodies.get("userId"), requestBodies.get("password"),
+                requestBodies.get("name"), requestBodies.get("email"));
     }
 
     public Map<String, String> getRequestBodies() {

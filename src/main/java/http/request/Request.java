@@ -1,6 +1,7 @@
 package http.request;
 
 import http.MessageBody;
+import model.User;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -24,6 +25,10 @@ public class Request {
 
     public boolean isPost() {
         return requestLine.isPost();
+    }
+
+    public User getUser() {
+        return messageBody.getUser();
     }
 
     public RequestLine getRequestLine() {
