@@ -2,25 +2,22 @@ package controller;
 
 import http.ContentType;
 import http.request.Request;
+import http.response.Response;
 import utils.Directory;
 import utils.FileIoUtils;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
-
-import static http.ResponseHeader.response200Header;
-import static webserver.RequestHandler.responseBody;
 
 public class TemplatesController implements Controller {
 
     @Override
-    public void service(Request request, DataOutputStream dos) throws IOException, URISyntaxException {
+    public void service(Request request, Response response) throws IOException, URISyntaxException {
         String requestUrl = request.getRequestLine().getRequestUri();
 
         byte[] body = FileIoUtils.loadFileFromClasspath(Directory.TEMPLATES.getDirectory() + requestUrl);
         ContentType contentType = ContentType.of(requestUrl);
-        response200Header(dos, body.length, contentType.getContentType());
-        responseBody(dos, body);
+        response.response200Header(body.length, contentType.getContentType());
+        response.responseBody(body);
     }
 }

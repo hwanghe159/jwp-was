@@ -1,11 +1,11 @@
 package controller;
 
 import http.request.Request;
+import http.response.Response;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public interface Controller {
-    void service(Request request, DataOutputStream dos) throws IOException, URISyntaxException;
+    void service(Request request, Response response) throws IOException, URISyntaxException;
 }
