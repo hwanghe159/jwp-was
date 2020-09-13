@@ -1,16 +1,16 @@
 package controller;
 
-import static http.ResponseHeader.*;
-import static webserver.RequestHandler.*;
+import http.ContentType;
+import http.request.Request;
+import utils.Directory;
+import utils.FileIoUtils;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import http.ContentType;
-import http.Request;
-import utils.Directory;
-import utils.FileIoUtils;
+import static http.ResponseHeader.response200Header;
+import static webserver.RequestHandler.responseBody;
 
 public class TemplatesController implements Controller {
 

@@ -1,11 +1,12 @@
-package http;
+package http.request;
+
+import http.Header;
+import utils.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import utils.IOUtils;
 
 public class RequestHeader {
     private final static String DELIMITER = ": ";
