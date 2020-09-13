@@ -1,8 +1,8 @@
 package http;
 
-import java.io.BufferedReader;
-
 import exception.IllegalRequestException;
+
+import java.io.BufferedReader;
 
 public class RequestLine {
     private static final String DELIMITER = " ";
@@ -13,6 +13,13 @@ public class RequestLine {
     public RequestLine(BufferedReader br) throws Exception {
         String requestLine = br.readLine();
         validate(requestLine);
+        String[] tokens = requestLine.split(DELIMITER);
+        this.method = Method.valueOf(tokens[0]);
+        this.requestUri = tokens[1];
+        this.httpVersion = tokens[2];
+    }
+
+    public RequestLine(String requestLine) {
         String[] tokens = requestLine.split(DELIMITER);
         this.method = Method.valueOf(tokens[0]);
         this.requestUri = tokens[1];
