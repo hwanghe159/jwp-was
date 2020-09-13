@@ -1,6 +1,7 @@
 package controller;
 
 import http.ContentType;
+import http.request.Request;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,8 @@ public class Controllers {
         controllers.put("/users", new UserCreateController());
     }
 
-    public static Controller getController(String requestUrl) {
+    public static Controller getController(Request request) {
+        String requestUrl = request.getRequestLine().getRequestUri().getPath();
         Controller controller = controllers.get(requestUrl);
 
         if (controller != null) {

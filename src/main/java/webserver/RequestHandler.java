@@ -28,7 +28,7 @@ public class RequestHandler implements Runnable {
             Request request = new Request(in);
             Response response = new Response(out);
 
-            Controller controller = Controllers.getController(request.getRequestLine().getRequestUri().getPath());
+            Controller controller = Controllers.getController(request);
             controller.service(request, response);
         } catch (Exception e) {
             logger.error(e.getMessage());

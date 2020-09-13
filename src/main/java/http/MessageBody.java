@@ -12,13 +12,13 @@ public class MessageBody {
     private static final String URL_DELIMITER = "&";
     private static final String BODY_DELIMITER = "=";
 
-    private Map<String, String> requestBodies = new HashMap<>();
+    private Map<String, String> bodyData = new HashMap<>();
 
     public MessageBody(BufferedReader br, Integer contentLength) throws IOException {
         String line = IOUtils.readData(br, contentLength);
         if (!"".equals(line)) {
             String[] tokens = line.split(URL_DELIMITER);
-            this.requestBodies = parseRequestBody(tokens);
+            this.bodyData = parseRequestBody(tokens);
         }
     }
 
@@ -32,11 +32,11 @@ public class MessageBody {
     }
 
     public User getUser() {
-        return new User(requestBodies.get("userId"), requestBodies.get("password"),
-                requestBodies.get("name"), requestBodies.get("email"));
+        return new User(bodyData.get("userId"), bodyData.get("password"),
+                bodyData.get("name"), bodyData.get("email"));
     }
 
-    public Map<String, String> getRequestBodies() {
-        return requestBodies;
+    public Map<String, String> getBodyData() {
+        return bodyData;
     }
 }

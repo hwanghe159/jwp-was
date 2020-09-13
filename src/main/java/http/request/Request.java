@@ -14,7 +14,7 @@ public class Request {
 
     public Request(InputStream in) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
-        this.requestLine = new RequestLine(br);
+        this.requestLine = new RequestLine(br.readLine());
         this.requestHeader = new RequestHeader(br);
         this.messageBody = new MessageBody(br, requestHeader.getContentLength());
     }

@@ -11,28 +11,32 @@ import java.util.Map;
 public class RequestHeader {
     private final static String DELIMITER = ": ";
 
-    private Map<String, String> requestHeaders = new HashMap<>();
+    private Map<String, String> headerData;
 
     public RequestHeader(BufferedReader br) throws IOException {
-        String line = br.readLine();
+        this.headerData = toMap(br);
+        IOUtils.printHeader(headerData);
+    }
 
+    private Map<String, String> toMap(BufferedReader br) throws IOException {
+        Map<String, String> headerData = new HashMap<>();
+        String line = br.readLine();
         while (line != null && !"".equals(line)) {
             String[] token = line.split(DELIMITER);
-            this.requestHeaders.put(token[0], token[1]);
+            headerData.put(token[0], token[1]);
             line = br.readLine();
         }
-
-        IOUtils.printHeader(requestHeaders);
+        return headerData;
     }
 
     public Integer getContentLength() {
-        if (requestHeaders.get(Header.CONTENT_TYPE.getName()) == null) {
+        if (headerData.get(Header.CONTENT_TYPE.getName()) == null) {
             return 0;
         }
-        return Integer.parseInt(requestHeaders.get(Header.CONTENT_LENGTH.getName()));
+        return Integer.parseInt(headerData.get(Header.CONTENT_LENGTH.getName()));
     }
 
-    public Map<String, String> getRequestHeaders() {
-        return requestHeaders;
+    public Map<String, String> getHeaderData() {
+        return headerData;
     }
 }

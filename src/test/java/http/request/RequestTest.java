@@ -24,8 +24,8 @@ class RequestTest {
         Request expected = new Request(new ByteArrayInputStream(request.getBytes()));
 
         assertThat(expected.getRequestLine().getRequestUri().getPath()).isEqualTo("/user/create");
-        assertThat(expected.getRequestHeader().getRequestHeaders()).hasSize(5);
-        assertThat(expected.getMessageBody().getRequestBodies()).hasSize(4);
+        assertThat(expected.getRequestHeader().getHeaderData()).hasSize(5);
+        assertThat(expected.getMessageBody().getBodyData()).hasSize(4);
     }
 
 //    @DisplayName("get Request 생성 테스트")
